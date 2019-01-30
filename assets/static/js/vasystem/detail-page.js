@@ -5,7 +5,7 @@ define(function (require) {
     data: {
       question: null,
       questionId: null,
-      isAdmin: null,
+      isAdmin: true,
       comments: [],
       answers: [],
       suggest: [],
@@ -21,7 +21,7 @@ define(function (require) {
       this.comments = this.locals.comments;
       this.suggest = this.locals.suggest;
       this.answers = this.locals.answers;
-      this.isAdmin = this.locals.me.isAdmin;
+      this.isAdmin = this.me.isAdmin;
     },
     methods: {
       saveComment: function () {

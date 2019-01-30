@@ -8,6 +8,7 @@
       </div>
     </div>
   </div>
+  <div v-if="isAdmin" style="margin-top: 100px"></div>
   <div class="quest-table">
     <table class="user-table table table-striped table-bordered">
       <thead>
@@ -28,7 +29,7 @@
         <td style="text-align: center">{{showStatus(ques)}}</td>
         <td style="text-align: center">{{ques.comment}}</td>
         <td style="text-align: center">
-          <button class="btn btn-sm btn-success">
+          <button v-if="ques.userId == userId" class="btn btn-sm btn-success">
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </button>
           <button class="btn btn-sm btn-info" v-on:click="quesDetail(ques)">
