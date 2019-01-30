@@ -4,12 +4,14 @@ define(function (require) {
     mixins: [],
     data: {
       questionList: [],
+      isAdmin: null,
       question: null,
     },
     beforeMount: function () {
       // Attach any initial data from the server.
       _.extend(this, SAILS_LOCALS);
       this.questionList = this.locals.questions;
+      this.isAdmin = this.locals.me.isAdmin;
       console.log(SAILS_LOCALS);
     },
     methods: {

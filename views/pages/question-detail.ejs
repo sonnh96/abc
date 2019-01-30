@@ -58,7 +58,7 @@
         <%= sails.__('Answers') %>
       </div>
       <div class="content">
-        <div class="content-box">
+        <div v-if="isAdmin" class="content-box">
           <div v-if="suggest" class="suggestion">
             <div v-for="(sug, index) in suggest" class="item">
               <div class="content-data">{{index + 1}}. {{sug.sen}}</div>

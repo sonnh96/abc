@@ -1,5 +1,5 @@
 <div id="homepage" vueapp="vasystem" vuelogic="static/js/vasystem/index">
-  <div class="content-box">
+  <div v-if="!isAdmin" class="content-box">
     <h3 class="title-box input-document">Enter question</h3>
     <div class="text-box">
       <textarea v-model="question" id="doc" name="document"></textarea>
