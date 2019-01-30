@@ -1,0 +1,9 @@
+<% /* Note: This is injected into `views/layouts/layout-email.ejs` */ %>
+<p style="margin-bottom: 25px;">ようこそ、<%= fullName %>様</p>
+<p style="margin-bottom: 25px;">AIFPを始める準備が整いました。 あなたのアカウントメールアドレスを確認するには、 以下のボタンをクリックします。</p>
+<div style="margin-bottom: 25px; text-align: center;">
+  <a style="background-color: #00ACC4; display: inline-block; font-size: 1.1em; color: #fff; padding: 10px 35px 10px; font-weight: 500; text-decoration: none; border-radius: 7px;" href="<%= url.resolve(sails.config.custom.baseUrl,'/email/confirm')+'?token='+encodeURIComponent(token) %>">Eメール確認</a>
+</div>
+<p style="margin-bottom: 25px;">問題がある場合は以下のリンクをクリックしてください。 <a style="color: #00ACC4; word-wrap: break-word;" href="<%= url.resolve(sails.config.custom.baseUrl,'/email/confirm')+'?token='+encodeURIComponent(token) %>"><%= url.resolve(sails.config.custom.baseUrl,'/email/confirm')+'?token='+encodeURIComponent(token) %></a></p>
+<p style="margin-bottom: 5px;">敬具</p>
+<p style="margin-top: 0px;">AI プロジェクト AIFPチーム</p>

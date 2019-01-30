@@ -1,0 +1,24 @@
+<modal v-if="deleteDialog.shown" @close="cleanDeleteDialogForm" ref="deleteAgreementDialog">
+  <h5 slot="title">Do you want to delete?</h5>
+  <ajax-form action="deleteAgreementRevision" :syncing.sync="deleteDialog.syncing"
+             :cloud-error.sync="deleteDialog.cloudError" :handle-parsing="handleParsingDeleteForm"
+             @submitted="termAgreementDeleted">
+    <div class="modal-body">
+      <input type="hidden" :value="deleteDialog.formData.id" name="id">
+      <ul class="object-descriptions">
+        <li class="object--prop-item">
+          <p class="object--field">Name:</p>
+          <sub class="object--value" v-text="deleteDialog.formData.name"></sub>
+        </li>
+      </ul>
+      <p class="text-danger" v-if="deleteDialog.cloudError">
+        <small><%= sails.__('general_error') %></small>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <ajax-button class="btn btn-danger btn-sm" :sync="deleteDialog.syncing">
+        <%= sails.__('Delete') %>
+      </ajax-button>
+    </div>
+  </ajax-form>
+</modal>

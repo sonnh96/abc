@@ -1,0 +1,8 @@
+@import "bootstrap-extends";
+@import "components/index";
+
+#user-manager, #type-manager, #permission-manager {
+  table {
+    font-size: 13px;
+  }
+}

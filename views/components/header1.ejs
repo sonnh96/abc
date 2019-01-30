@@ -1,0 +1,53 @@
+<header id="page-header" 
+        class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row">
+   <a class="navbar-brand mr-0" href="/"><img class="logo" alt="NEW_APP_NAME logo" src="/images/logo.png"/></a>
+  <!-- Only in desktop nav -->
+  <div class="navbar-nav flex-row mr-auto">
+    <% if(me) { %>
+      <a class="nav-item nav-link ml-2 mr-2 d-sm-block" href="/"><%= sails.__('overview') %></a>
+      <a class="nav-item nav-link ml-2 mr-2 d-sm-block"
+         href="/recommend"><%= sails.__('assisting_stock_prediction') %></a>
+      <a class="nav-item nav-link ml-2 mr-2 d-sm-block" href="/pt/privacy"><%= sails.__('privacy_policy') %></a>
+      <a class="nav-item nav-link ml-2 mr-2 d-sm-block" href="/pt/tokutei"><%= sails.__('tokutei') %></a>
+    <% } %>
+  </div>
+  <div class="navbar-nav flex-row">
+    <!-- LOGGED-IN NAVIGATION -->
+    <div class="nav-item dropdown d-none d-sm-block">
+      <a class="nav-link dropdown-toggle" id="header-change-language-link" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <%= req.currentLanguage.title %>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="header-change-language-link">
+        <% for (let lang of req.availableLanguages) { %>
+          <a class="dropdown-item" href="<%= req.path %>?hl=<%= lang.code %>"><%= lang.title %></a>
+        <% } %>
+      </div>
+    </div>
+    <% if(me) { %>
+      <!-- Only in desktop nav -->
+      <div class="nav-item dropdown d-none d-sm-block">
+        <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false"><%= sails.__('Account') %></a>
+        <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
+          <a class="dropdown-item" href="/account"><%= sails.__('Account Settings') %></a>
+          <a class="dropdown-item" href="/logout"><%= sails.__('Sign out') %></a>
+        </div>
+      </div>
+      <!-- Only in mobile nav -->
+      <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account"><%= sails.__('Account Settings') %></a>
+      <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout"><%= sails.__('Sign out') %></a>
+    <% } else { %>
+      <!-- LOGGED-OUT NAVIGATION -->
+      <% if (!req.disableLinkToLoginPage) { %>
+        <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login"><%= sails.__('Log in') %></a>
+        <!-- Only in desktop nav -->
+        <div class="form-inline d-none ml-2 d-md-block">
+          <a class="btn btn-outline-info" href="/signup"><%= sails.__('Sign up') %></a>
+        </div>
+        <!-- Only in mobile nav -->
+        <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup"><%= sails.__('Sign up') %></a>
+      <% } %>
+    <% } %>
+  </div>
+</header>

@@ -1,0 +1,87 @@
+<div id="account-overview" v-cloak>
+  <div class="container">
+    <h1><%= sails.__('My account') %></h1>
+    <hr/>
+    <!--personal info-->
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <h4><%= sails.__('Personal information') %></h4>
+      </div>
+      <div class="col-sm-6">
+        <span class="float-sm-right">
+          <a class="btn btn-sm btn-outline-info account-settings-button"
+             href="/account/profile"><%= sails.__('Edit profile') %></a>
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"><%= sails.__('Name') %>:</div>
+      <div class="col"><strong>{{me.fullName}}</strong></div>
+    </div>
+    <div class="row">
+      <div class="col-3"><%= sails.__('Email') %>:</div>
+      <div class="col">
+        <strong :class="[me.emailStatus === 'unconfirmed' || me.emailStatus === 'changeRequested' ? 'text-muted' : '']">{{me.emailChangeCandidate
+          ? me.emailChangeCandidate : me.emailAddress}}</strong>
+        <span v-if="me.emailStatus === 'unconfirmed' || me.emailStatus === 'changeRequested'"
+              class="badge badge-pill badge-warning"><%= sails.__('Unverified') %></span>
+      </div>
+    </div>
+    <!--end personal info-->
+    <hr/>
+    <!--personal settings-->
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <h4><%= sails.__('Settings') %></h4>
+      </div>
+      <div class="col-sm-6">
+        <div class="float-sm-right">
+          <a href="/account/settings"
+             class="btn btn-sm btn-outline-info account-settings-button"><%= sails.__('Change settings') %></a>
+        </div>
+      </div>
+    </div>
+    <!--end personal settings-->
+    <hr/>
+    <!--password-->
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <h4><%= sails.__('Password') %></h4>
+      </div>
+      <div class="col-sm-6">
+        <span class="float-sm-right">
+          <a class="btn btn-sm btn-outline-info account-settings-button"
+             href="/account/password"><%= sails.__('Change password') %></a>
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"><%= sails.__('Password') %>:</div>
+      <div class="col"><strong>••••••••••</strong></div>
+    </div>
+    <!--end password-->
+
+    <div v-if="userType">
+      <hr/>
+      <!--plan-->
+      <div class="row mb-3">
+        <div class="col-sm-6">
+          <h4><%= sails.__('Plan') %></h4>
+        </div>
+        <div class="col-sm-6">
+        <span class="float-sm-right">
+          <a class="btn btn-sm btn-outline-info account-settings-button"
+             href="/register"><%= sails.__('Change Plan') %></a>
+        </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3"><%= sails.__('Date Expire') %>:</div>
+        <div class="col">{{ displayDate(me.expireDate) }}</div>
+      </div>
+    </div>
+    <!--end plan-->
+    <hr/>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

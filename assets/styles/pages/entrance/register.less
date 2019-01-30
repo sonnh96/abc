@@ -1,0 +1,268 @@
+h2 {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pricing-table-new-holder__tables {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 50px;
+  margin-bottom: 100px;
+
+  .table-new-holder-tables__holder {
+    min-height: 1px;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+
+    .pricing-table-new-holder-tables__holder {
+      min-height: 1px;
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+    }
+  }
+}
+
+.pricing-table-new-holder-tables-holder__table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 35px 20px 50px 20px;
+  border-radius: 5px;
+  border: 2px solid #ff4546;
+  margin-left: -2px;
+  margin-right: -2px;
+  height: 100%;
+  margin-right: 15px;
+
+  .pricing-table-new-holder-tables-holder-table__top {
+    max-width: 300px;
+
+    .pricing-table-new-holder-tables-holder-table-top__title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      text-align: center;
+      min-height: 50px;
+    }
+
+    .pricing-table-new-holder-tables-holder-table-top__discount {
+      display: none;
+      //display: -webkit-box;
+      //display: -ms-flexbox;
+      //display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      margin-bottom: 25px;
+
+      .pricing-table-new-holder-tables-holder-table-discount-top__old-price {
+        color: #969696;
+        text-decoration: line-through;
+        font-size: 18px;
+        padding: 0 5px;
+      }
+
+      .pricing-table-new-holder-tables-holder-table-discount-top__percentage {
+        border-radius: 40px;
+        opacity: .5;
+        background: #6747c7;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 6px 10px;
+        text-align: center;
+      }
+    }
+
+    .price-block {
+      font-size: 50px;
+
+      .price-block-wrapper {
+        font-size: 1em;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+
+        .price-block__currency {
+          font-size: 1em;
+          font-weight: 700;
+          margin-top: 0;
+        }
+
+        .price-block__bigno {
+          font-size: 1em;
+          font-weight: 700;
+          //line-height: .2em;
+          //margin-top: 10px;
+        }
+      }
+
+      .price-block__right-holder {
+        //display: -webkit-box;
+        //display: -ms-flexbox;
+        //display: flex;
+        display: none;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -ms-flex-pack: inherit;
+        justify-content: space-around;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+
+        .price-block-right-holder__unit {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+        }
+
+        .price-block-right-holder-unit__unit {
+          font-size: .5em;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: end;
+          -ms-flex-align: end;
+          align-items: flex-end;
+          margin: .3em;
+        }
+      }
+    }
+
+    .pricing-table-new-holder-tables-holder-table-top__button {
+      margin-bottom: 40px;
+      margin-top: 30px;
+
+      .flex-justify-align-center {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+
+        .component-button-default--pricing-table {
+          font-size: 18px;
+          min-width: unset;
+          font-weight: 700;
+          padding: 15px 40px;
+        }
+        .component-button-default--uppercase {
+          text-transform: uppercase;
+          letter-spacing: 2px;
+        }
+        .component-button-default {
+          /* font-weight: 600; */
+          border-radius: 4px;
+          /* padding: 25px 50px; */
+          /* font-size: 16px; */
+          color: #fff;
+          text-decoration: none;
+          text-align: center;
+          word-break: break-word;
+          /* min-width: 350px; */
+          background-color: #6747c7;
+        }
+        button {
+          color: #5435b0;
+          cursor: pointer;
+          -webkit-transition: all .3s ease-in-out;
+          transition: all .3s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .pricing-table-new-holder-tables-holder-table__bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+
+    .pricing-table-new-holder-tables-holder-table-bottom__features {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      max-width: 300px;
+
+      li {
+        line-height: 38px;
+        font-size: 16px;
+        font-weight: 300;
+
+        &:before {
+          content: "\f00c";
+          color: limegreen;
+          display: inline-block;
+          margin-right: 5px;
+          position: relative;
+          top: 1px;
+          font-family: 'FontAwesome', serif;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      }
+    }
+
+    .pricing-table-new-holder-tables-holder-table-bottom__see-more {
+      display: none;
+    }
+  }
+}

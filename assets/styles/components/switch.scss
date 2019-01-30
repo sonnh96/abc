@@ -1,0 +1,182 @@
+@import "../helper";
+//slider
+$slider_height: 22px;
+$slider_padding: 4px;
+$core_width: $slider_height - $slider_padding * 2;
+$switch_font_size: 8px;
+$extra_slide_offset: $switch_font_size * 2 - $core_width + 2px;
+@if ($extra_slide_offset < 4px) {
+  $extra_slide_offset: 4px;
+}
+
+$slider_width: $core_width * 2 + $slider_padding * 2 + $extra_slide_offset;
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: $slider_width;
+  height: $slider_height;
+  margin: 0;
+
+  /* Hide default HTML checkbox */
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    @include prefix((transition: .4s), o ms moz webkit);
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: $core_width;
+      width: $core_width;
+      left: $slider_padding;
+      bottom: $slider_padding;
+      background-color: white;
+      @include prefix((transition: .4s), o ms moz webkit);
+    }
+  }
+
+  input[type="checkbox"]:checked + .slider {
+    background-color: #417590;
+  }
+
+  input[type="checkbox"]:focus + .slider {
+    box-shadow: 0 0 1px #256090;
+  }
+
+  input[type="checkbox"]:checked + .slider:before {
+    @include prefix((transform: translateX($core_width + $extra_slide_offset)), o ms moz webkit);
+  }
+
+  /* Rounded sliders */
+  &.round {
+    .slider {
+      border-radius: $slider_height;
+
+      &:before {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &.with-text {
+    .slider::after {
+      content: 'OFF';
+      position: absolute;
+      right: $slider_padding;
+      top: 50%;
+      @include prefix((transform: translateY(-50%)), o ms moz webkit);
+      color: #fff;
+      font-size: $switch_font_size;
+    }
+
+    input[type="checkbox"]:checked + .slider::after {
+      right: unset;
+      content: 'ON';
+      left: 6px;
+    }
+  }
+
+  &.switch-sm {
+    $slider_height: 18px;
+    $slider_padding: 3px;
+    $core_width: $slider_height - $slider_padding * 2;
+    $switch_font_size: 7px;
+    $extra_slide_offset: $switch_font_size * 2 - $core_width + 2px;
+    @if ($extra_slide_offset < 4px) {
+      $extra_slide_offset: 4px;
+    }
+    $slider_width: $core_width * 2 + $slider_padding * 2 + $extra_slide_offset;
+
+    width: $slider_width;
+    height: $slider_height;
+    .slider {
+
+      &:before {
+        height: $core_width;
+        width: $core_width;
+        left: $slider_padding;
+        bottom: $slider_padding;
+      }
+    }
+
+    input[type="checkbox"]:checked + .slider:before {
+      @include prefix((transform: translateX($core_width + $extra_slide_offset)), o ms moz webkit);
+    }
+
+    /* Rounded sliders */
+    &.round {
+      .slider {
+        border-radius: $slider_height;
+      }
+    }
+
+    &.with-text {
+      .slider::after {
+        right: $slider_padding;
+        font-size: $switch_font_size;
+      }
+
+      input[type="checkbox"]:checked + .slider::after {
+        left: 4px;
+      }
+    }
+  }
+
+  &.switch-lg {
+    $slider_height: 28px;
+    $slider_padding: 4px;
+    $core_width: $slider_height - $slider_padding * 2;
+    $switch_font_size: 10px;
+    $extra_slide_offset: $switch_font_size * 2 - $core_width + 2px;
+    @if ($extra_slide_offset < 4px) {
+      $extra_slide_offset: 4px;
+    }
+
+    $slider_width: $core_width * 2 + $slider_padding * 2 + $extra_slide_offset;
+
+    width: $slider_width;
+    height: $slider_height;
+    .slider {
+
+      &:before {
+        height: $core_width;
+        width: $core_width;
+        left: $slider_padding;
+        bottom: $slider_padding;
+      }
+    }
+
+    input[type="checkbox"]:checked + .slider:before {
+      @include prefix((transform: translateX($core_width + $extra_slide_offset)), o ms moz webkit);
+    }
+
+    /* Rounded sliders */
+    &.round {
+      .slider {
+        border-radius: $slider_height;
+      }
+    }
+
+    &.with-text {
+      .slider::after {
+        right: $slider_padding + 2px;
+        font-size: $switch_font_size;
+      }
+
+      input[type="checkbox"]:checked + .slider::after {
+        left: 8px;
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<div id="user-manager">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3><%= sails.__('User manager') %></h3>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-sm btn-outline-secondary" v-on:click="openEditUserDialog()">
+        <i class="fa fa-plus"></i>
+        <%= sails.__('User') %>
+      </button>
+    </div>
+  </div>
+  <div class="margin-top-20 padding-right-20">
+    <table class="user-table table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th><%= sails.__('Send ID') %></th>
+        <th><%= sails.__('Email address') %></th>
+        <th><%= sails.__('Full name') %></th>
+        <th><%= sails.__('User type') %></th>
+        <th><%= sails.__('Expire Date') %></th>
+        <th><%= sails.__('Options') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(user, index) in userTableList">
+        <td>{{ index + 1 }}</td>
+        <td>{{user.sendid}}</td>
+        <td v-bind:class="showPermiss(user.userType)">{{user.emailAddress}}</td>
+        <td>{{user.fullName}}</td>
+        <td>{{ prettyUserType(user.userType, user.isSuperAdmin) }}</td>
+        <td class="ex-date">{{ prettyDate(user.expireDate, user.userType) }}</td>
+        <td>
+          <button v-if="user.emailStatus!='confirmed'" class="btn btn-sm btn-info" v-on:click="activateEndUser(user, true)">
+            <i class="fa fa-unlock"></i>
+          </button>
+          <button v-else class="btn btn-sm btn-warning" v-on:click="activateEndUser(user, false)">
+            <i class="fa fa-lock"></i>
+          </button>
+          <button class="btn btn-sm btn-success" v-on:click="openEditUserDialog(user)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" v-on:click="confirmDeleteUser(user)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--modal-->
+  <div v-cloak>
+    <%- include('../dialogs/create-enduser-dialog') %>
+    <%- include('../dialogs/delete-enduser-dialog') %>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+

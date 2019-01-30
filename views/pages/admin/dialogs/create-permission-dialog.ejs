@@ -1,0 +1,40 @@
+<modal v-if="updateDialog.shown" v-on:close="cleanUpdatePerDialog" ref="updatePerDialog">
+  <h5 slot="title">{{ updateDialog.creating ? 'Create a new permission' : 'Update permission'}}</h5>
+  <ajax-form :action="updateDialog.creating ? 'createPermission' : 'updatePermission'"
+             :syncing.sync="updateDialog.syncing"
+             :cloud-error.sync="updateDialog.cloudError" :handle-parsing="handleParsingUpdateForm"
+             @submitted="permissionUpdated">
+    <div class="modal-body">
+      <div class="form-group">
+        <label><%= sails.__('Permission name') %>:</label>
+        <input class="form-control form-control-sm" type="text" placeholder="Allow do something"
+               :class="[updateDialog.formErrors.name ? 'is-invalid' : '']"
+               v-model.trim="updateDialog.formData.name" name="name" required>
+        <div class="invalid-feedback" v-if="updateDialog.formErrors.name">
+          <%= sails.__('Please enter permission name.') %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label><%= sails.__('Permission code') %>:</label>
+        <input class="form-control form-control-sm" type="text" placeholder="DST"
+               :class="[updateDialog.formErrors.id ? 'is-invalid' : '']"
+               :disabled="!updateDialog.creating"
+               v-model.trim="updateDialog.formData.id" name="code" required>
+        <div class="invalid-feedback" v-if="updateDialog.formErrors.id">
+          <%= sails.__('Please enter permission code.') %>
+        </div>
+      </div>
+      <p class="text-danger" v-if="updateDialog.cloudError==='duplicate'">
+        <small><%= sails.__('Permission existed, please try another permission code') %></small>
+      </p>
+      <p class="text-danger" v-else-if="updateDialog.cloudError">
+        <small><%= sails.__('general_error') %></small>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <ajax-button class="btn btn-secondary btn-sm" :sync="updateDialog.syncing">
+        {{ updateDialog.creating ? 'Create' : 'Update'}}
+      </ajax-button>
+    </div>
+  </ajax-form>
+</modal>

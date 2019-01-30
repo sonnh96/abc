@@ -1,0 +1,57 @@
+<div id="agreement-review" v-cloak>
+  <div class="container">
+    <p class="text-center text-preformated"><%= sails.__('term_review_hint') %></p>
+    <div class="card border-danger margin-top-20">
+      <div class="card-header font-weight-bold text-danger">
+        ！ <%= sails.__('confirm_matter') %>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item" v-for="agreement in agreements" :key="agreement.id">
+            <u class="font-weight-bold card-title d-inline vertical-middle">
+              <a class="text-secondary" :href="'/pt/agreements/' + agreement.id">{{agreement.name}}</a>
+            </u>
+            <div class="pull-right">
+              <span class="font-weight-bold text-danger" v-if="!isAccepted(agreement) && isUsedToAccept(agreement)">{{ agreement.updatedAt }} 更新</span>
+              <button class="btn btn-warning margin-left-20" :disabled="isAccepted(agreement)"
+                      @click="showAgreementDialog(agreement)">
+                {{ isAccepted(agreement) ? '◎ 確認済み' : '>> 確認する' }}
+              </button>
+            </div>
+          </li>
+        </ul>
+        <div class="margin-top-10 ">
+          <button class="btn btn-secondary accept-btn center-block"
+                  :disabled="!isAcceptAll" @click="toEntrance">
+            <%= sails.__('Entrance')%>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="entrance-c-logo margin-top-50">
+      <img src="/images/c_logo_ver.png" alt="Social invest logo">
+    </div>
+  </div>
+  <!--modal-->
+  <modal v-if="acceptDialog.showing && acceptDialog.agreement" v-on:close="cleanDialog" ref="agreementDlg"
+         custom-class="term-dialog">
+    <h5 slot="title">{{ acceptDialog.agreement.name }}</h5>
+    <ajax-form action="acceptAgreement" :syncing.sync="acceptDialog.syncing" :cloud-error.sync="acceptDialog.cloudError"
+               @submitted="formSubmitted" :handle-parsing="formPrepare">
+      <div class="modal-body">
+        <iframe :src="'/uploaded/' + acceptDialog.agreement.file" frameborder="0" width="100%" height="500px"></iframe>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group form-check margin-bottom-0">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="acceptDialog.checked">
+          <label class="form-check-label" for="exampleCheck1">{{ acceptDialog.agreement.name + 'に同意します'}}</label>
+        </div>
+        <ajax-button class="btn btn-success btn-sm" :disabled="!acceptDialog.checked"
+                     :sync="acceptDialog.syncing">OK
+        </ajax-button>
+      </div>
+    </ajax-form>
+  </modal>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

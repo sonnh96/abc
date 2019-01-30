@@ -1,0 +1,52 @@
+<div id="type-manager">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3><%= sails.__('User type manager') %></h3>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-sm btn-outline-secondary" v-on:click="openEditUserTypeDialog()">
+        <i class="fa fa-plus"></i>
+        <%= sails.__('Add user type') %>
+      </button>
+    </div>
+  </div>
+  <div class="margin-top-20 padding-right-20">
+    <table class="user-table table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th></th>
+        <th><%= sails.__('User type') %></th>
+        <th><%= sails.__('Roles') %></th>
+        <th><%= sails.__('Options') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(type, index) in userTypeList">
+        <td>{{ index + 1 }}</td>
+        <td>
+          <input type="radio" class="material-radio" name="default_user_type"
+                 :value="type.id" v-model="defaultUserType">
+        </td>
+        <td>{{ type.name }}</td>
+        <td>{{ type.permission_arr }}</td>
+        <td>
+          <button class="btn btn-sm btn-success" v-on:click="openEditUserTypeDialog(type)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" v-on:click="confirmDeleteUserType(type)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--modal-->
+  <div v-cloak>
+    <%- include('../dialogs/create-usertype-dialog') %>
+    <%- include('../dialogs/delete-usertype-dialog') %>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+

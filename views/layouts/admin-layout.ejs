@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="<%= req.getLocale() %>">
+<head>
+  <title><%= sails.__('title_web') %></title>
+  <% /* Viewport tag for sensible mobile support */ %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%- include('../components/favicon') %>
+  <% /* Auto-injected «link» tags: */ %>
+  <!--STYLES-->
+  <link rel="stylesheet" href="/dependencies/bootstrap-4/bootstrap-4.css">
+  <link rel="stylesheet" href="/dependencies/fontawesome.css">
+  <link rel="stylesheet" href="/styles/importer.css">
+  <!--STYLES END-->
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+<div id="page-wrap">
+  <%- include('../components/header') %>
+  <div class="row">
+    <div class="col-sm-4 col-md-3">
+      <div class="sidebar margin-top-15" style="padding: 10px">
+        <a href="/admin/user_manager" class="btn btn-sm btn-block btn-secondary"><%= sails.__('User manager') %></a>
+        <a href="/admin/type_manager"
+           class="btn btn-sm btn-block btn-secondary"><%= sails.__('User type manager') %></a>
+        <a href="/admin/permission_manager"
+           class="btn btn-sm btn-block btn-secondary"><%= sails.__('Permission manager') %></a>
+        <a href="/admin/agreements"
+           class="btn btn-sm btn-block btn-secondary">Agreements</a>
+      </div>
+      <div class="user-data">
+        <% for (i in locals.userData) { %>
+          <div class="panel-data total">
+            <span class="title"><%= locals.userData[i].name + ' ' + sails.__('users') %></span>
+            <span class="quantity"><%= locals.userData[i].total %></span>
+          </div>
+        <% } %>
+      </div>
+
+    </div>
+    <div class="col-sm-8 col-md-9">
+      <div class="margin-top-10">
+        <%- body %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>delete window.self;</script>
+<!--SCRIPTS-->
+<script src="/dependencies/sails.io.js"></script>
+<script src="/dependencies/lodash.js"></script>
+<script src="/dependencies/jquery.min.js"></script>
+<script src="/dependencies/vue.js"></script>
+<script src="/dependencies/vue-router.js"></script>
+<script src="/dependencies/bootstrap-4/bootstrap-4.bundle.js"></script>
+<script src="/dependencies/bowser.js"></script>
+<script src="/dependencies/cloud.js"></script>
+<script src="/dependencies/moment.js"></script>
+<script src="/dependencies/parasails.js"></script>
+<script src="/js/cloud.setup.js"></script>
+<script src="/js/components/ajax-button.component.js"></script>
+<script src="/js/components/ajax-form.component.js"></script>
+<script src="/js/components/js-timestamp.component.js"></script>
+<script src="/js/components/modal.component.js"></script>
+<script src="/js/components/toggle-switch.component.js"></script>
+<script src="/js/utilities/open-stripe-checkout.js"></script>
+<script src="/js/pages/498.page.js"></script>
+<script src="/js/pages/account/account-overview.page.js"></script>
+<script src="/js/pages/account/edit-password.page.js"></script>
+<script src="/js/pages/account/edit-profile.page.js"></script>
+<script src="/js/pages/account/edit-settings.page.js"></script>
+<script src="/js/pages/contact.page.js"></script>
+<script src="/js/pages/dashboard/welcome.page.js"></script>
+<script src="/js/pages/entrance/agreement-review.page.js"></script>
+<script src="/js/pages/entrance/confirmed-email.page.js"></script>
+<script src="/js/pages/entrance/forgot-password.page.js"></script>
+<script src="/js/pages/entrance/login.page.js"></script>
+<script src="/js/pages/entrance/new-password.page.js"></script>
+<script src="/js/pages/entrance/register.page.js"></script>
+<script src="/js/pages/entrance/signup.page.js"></script>
+<script src="/js/pages/faq.page.js"></script>
+<script src="/js/pages/homepage.page.js"></script>
+<script src="/js/pages/legal/privacy.page.js"></script>
+<script src="/js/pages/legal/terms.page.js"></script>
+<script src="/js/pages/unconfirmed.page.js"></script>
+<!--SCRIPTS END-->
+</body>
+</html>

@@ -1,0 +1,49 @@
+<%- exposeLocalsToBrowser() %>
+<div id="register">
+  <div class="pricing-table-new__holder">
+    <h2>Choose Your Plan </h2>
+    <div class="pricing-table-new-holder__tables">
+      <div v-for="(type, index) in plan" class="pricing-table-new-holder-tables__holder">
+        <div class="pricing-table-new-holder-tables-holder__table">
+          <div class="pricing-table-new-holder-tables-holder-table__top">
+            <h4 class="pricing-table-new-holder-tables-holder-table-top__title">
+              {{ type.name }}
+            </h4>
+            <div class="price-block">
+              <div class="price-block-wrapper">
+                <div class="price-block__currency">¥</div>
+                <div class="price-block__bigno">
+                  {{ type.price }}
+                </div>
+              </div>
+            </div>
+            <div class="pricing-table-new-holder-tables-holder-table-top__button">
+              <div class="flex-justify-align-center width100">
+                <button id="hgr-home-buy-button-get_started-hosting-hostinger-starter"
+                        v-on:click="settlementDirect(type)"
+                        class="component-button-default component-button-default--pricing-table
+                          component-button-default--uppercase">
+                  Get started
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="pricing-table-new-holder-tables-holder-table__bottom">
+            <ul class="pricing-table-new-holder-tables-holder-table-bottom__features">
+              <li v-for="(permission, id) in type.permissions">{{ permission.name }}</li>
+            </ul>
+            <div class="pricing-table-new-holder-tables-holder-table-bottom__see-more"><a
+                href="/web-hosting#comparison"
+                id="hgr-home-see_more-link-click_here_to_see_all_features-hosting-hostinger-starter">
+                Click here to see all features </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal-->
+  <div v-cloak>
+    <%- include('../admin/dialogs/register-dialog') %>
+  </div>
+
+</div>

@@ -1,0 +1,36 @@
+<div id="edit-settings" v-cloak>
+  <div class="container">
+    <h1><%= sails.__('Update account setting') %></h1>
+    <hr/>
+    <ajax-form action="updateUserSetting" :syncing.sync="syncing" :cloud-error.sync="cloudError"
+               @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="chart-view"><%= sails.__('Chart view') %>:</label>
+            <select class="form-control" id="chart-view" name="chart-view"
+                    :class="[formErrors.chartType ? 'is-invalid' : '']" v-model="formData.chartType">
+              <option value="line"><%= sails.__('line') %></option>
+              <option value="column"><%= sails.__('candle_stick') %></option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="text-danger" v-if="cloudError">
+            <%= sails.__('general_error') %>
+          </p>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group text-right">
+            <a class="btn btn-outline-info" href="/account"><%= sails.__('Cancel') %></a>
+            <ajax-button type="submit" :syncing="syncing"
+                         class="btn btn-dark"><%= sails.__('Save changes') %></ajax-button>
+          </div>
+        </div>
+      </div>
+    </ajax-form>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

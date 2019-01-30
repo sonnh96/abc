@@ -1,0 +1,16 @@
+<div id="settlement-manager">
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="btn btn-sm btn-outline-secondary" v-on:click="openUploadDialog()">
+        <i class="fa fa-plus"></i>
+        Upload settlement result
+      </button>
+    </div>
+  </div>
+  <!--modal-->
+  <div v-cloak>
+    <%- include('../dialogs/upload-settlement-dialog') %>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+

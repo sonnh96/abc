@@ -1,0 +1,63 @@
+<modal v-if="updateDialog.shown" v-on:close="cleanUpdateUserDialog" ref="updateDialog">
+  <h5 slot="title">{{ updateDialog.creating ? 'Create a new user' : 'Update user' }}</h5>
+  <ajax-form :action="updateDialog.creating ? 'createEndUser' : 'updateEndUser'" :syncing.sync="updateDialog.syncing"
+             :cloud-error.sync="updateDialog.cloudError" :handle-parsing="handleParsingUpdateForm"
+             @submitted="endUserUpdated">
+    <div class="modal-body">
+      <div class="form-group">
+        <label><%= sails.__('Full name') %>:</label>
+        <input class="form-control form-control-sm" type="text" placeholder="My Name"
+               :class="[updateDialog.formErrors.fullName ? 'is-invalid' : '']"
+               v-model.trim="updateDialog.formData.fullName" name="fullName" required>
+        <div class="invalid-feedback" v-if="updateDialog.formErrors.fullName">
+          <%= sails.__('Please enter your full name.') %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label><%= sails.__('Email address') %>:</label>
+        <input class="form-control form-control-sm" type="text" placeholder="name@example.com"
+               :class="[updateDialog.formErrors.emailAddress ? 'is-invalid' : '']"
+               v-model.trim="updateDialog.formData.emailAddress" name="emailAddress" required>
+        <div class="invalid-feedback" v-if="updateDialog.formErrors.emailAddress">
+          <%= sails.__('Please enter a valid email address.') %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password"><%= sails.__('Password') %>:</label>
+        <input class="form-control form-control-sm" id="password" type="password"
+               :class="[updateDialog.formErrors.password ? 'is-invalid' : '']"
+               v-model.trim="updateDialog.formData.password" placeholder="••••••••" autocomplete="new-password">
+        <div class="invalid-feedback" v-if="updateDialog.formErrors.password">
+          <%= sails.__('Please enter a password.') %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label><%= sails.__('Confirm password') %>:</label>
+        <input class="form-control form-control-sm" id="confirm-password" type="password"
+               :class="[updateDialog.formErrors.confirmPassword ? 'is-invalid' : '']"
+               v-model.trim="updateDialog.formData.confirmPassword"
+               placeholder="••••••••" autocomplete="new-password">
+        <div class="invalid-feedback" v-if="updateDialog.formErrors.confirmPassword">
+          <%= sails.__('Your password and confirmation do not match.') %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>User type:</label>
+        <select class="form-control form-control-sm" v-model="updateDialog.formData.userType">
+          <option :value="type.id" v-for="type in availableUserTypes">{{type.name}}</option>
+        </select>
+      </div>
+      <p class="text-danger" v-if="updateDialog.cloudError==='emailAlreadyInUse'">
+        <small>Email existed, please try another email</small>
+      </p>
+      <p class="text-danger" v-else-if="updateDialog.cloudError">
+        <small><%= sails.__('general_error') %></small>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <ajax-button class="btn btn-secondary btn-sm" :sync="updateDialog.syncing">
+        {{ updateDialog.creating ? 'Create user' : 'Update user' }}
+      </ajax-button>
+    </div>
+  </ajax-form>
+</modal>

@@ -1,0 +1,60 @@
+@mixin helper-padding($prefixes, $directions, $space_weights) {
+  @each $prefix in $prefixes {
+    @each $direction in $directions {
+      @each $space_weight in $space_weights {
+        .#{$prefix}margin-#{$direction}-#{$space_weight} {
+          margin-#{$direction}: #{($space_weight / 10)}em;
+        }
+        .#{$prefix}padding-#{$direction}-#{$space_weight} {
+          padding-#{$direction}: #{($space_weight / 10)}em;
+        }
+      }
+    }
+    .#{$prefix}center-block {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+$directions: top, bottom, left, right;
+$space_weights: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
+$prefixes: '', 'xs-';
+
+@include helper-padding($prefixes, $directions, $space_weights);
+
+@media (min-width: 768px) {
+  $prefixes: 'sm-';
+  @include helper-padding($prefixes, $directions, $space_weights);
+}
+
+@media (min-width: 992px) {
+  $prefixes: 'md-';
+  @include helper-padding($prefixes, $directions, $space_weights);
+}
+
+@media (min-width: 1200px) {
+  $prefixes: 'lg-';
+  @include helper-padding($prefixes, $directions, $space_weights);
+}
+
+.panel {
+  .panel-heading .btn {
+    position: relative;
+    right: -10px;
+    top: -5px;
+  }
+}
+
+.vertical-middle {
+  vertical-align: middle;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* CSS Statements that only apply on webkit-based browsers (Chrome, Safari, etc.) */
+  .vertical-middle {
+    vertical-align: -webkit-baseline-middle;
+  }
+}
+

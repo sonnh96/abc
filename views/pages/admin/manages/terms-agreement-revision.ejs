@@ -1,0 +1,53 @@
+<div id="terms-agreement-revision">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Agreements</h3>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-sm btn-outline-secondary" @click="openEditAgreementDialog()">
+        <i class="fa fa-plus"></i>
+        Upload agreement
+      </button>
+    </div>
+  </div>
+  <div class="margin-top-20 padding-right-20">
+    <table class="user-table table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Order</th>
+        <th>Updated at</th>
+        <th>Options</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(agreement, index) in agreements">
+        <td>{{ index + 1 }}</td>
+        <td>{{ agreement.name }}</td>
+        <td>{{ agreement.id }}</td>
+        <td>{{ agreement.order }}</td>
+        <td>{{ agreement.updatedAt }}</td>
+        <td>
+          <a class="btn btn-sm btn-warning" :href="'/pt/agreements/' + agreement.id">
+            <i class="fa fa-eye"></i>
+          </a>
+          <button class="btn btn-sm btn-success" @click="openEditAgreementDialog(agreement)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" @click="confirmDeleteAgreement(agreement)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--modal-->
+  <div v-cloak>
+    <%- include('../dialogs/create-agreement-dialog') %>
+    <%- include('../dialogs/delete-agreement-dialog') %>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

@@ -1,0 +1,11 @@
+<div id="confirmed-email" v-cloak>
+  <div class="container">
+    <h1 class="text-center"><%= sails.__('Email confirmed') %></h1>
+    <div class="confirmation-message">
+      <hr/>
+      <p><%= sails.__('account_verified_message') %></p>
+      <p><a class="btn btn-outline-info" href="/"><%= sails.__('Login') %></a></p>
+    </div>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

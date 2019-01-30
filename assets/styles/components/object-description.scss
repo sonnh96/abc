@@ -1,0 +1,22 @@
+.object-descriptions {
+  list-style: none;
+  padding: 0;
+}
+
+.object--prop-item {
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .object--field {
+    font-weight: bold;
+    margin: 0;
+    font-size: 13px;
+  }
+  .object--value {
+    font-size: 12px;
+    position: relative;
+    top: -5px;
+    left: 10px;
+  }
+}

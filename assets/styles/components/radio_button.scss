@@ -1,0 +1,36 @@
+$border-size: 2px;
+$point-size: 10px;
+$padding: 3px;
+
+$radio-size: $border-size*2 + $point-size + $padding*2;
+$checked-color: #4099ff;
+
+input[type="radio"].material-radio {
+  position: relative;
+  margin: 0;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  border: 2px solid #ccc;
+  background: transparent;
+  width: $radio-size;
+  height: $radio-size;
+  border-radius: 50%;
+
+  &:focus {
+    outline: none;
+  }
+  &:checked {
+    border-color: $checked-color;
+  }
+  &:checked:after {
+    content: '';
+    position: absolute;
+    width: $point-size;
+    height: $point-size;
+    left: $padding;
+    top: $padding;
+    border-radius: 50%;
+    background: #4099ff;
+  }
+}

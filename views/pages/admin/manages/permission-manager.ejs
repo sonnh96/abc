@@ -1,0 +1,48 @@
+<div id="permission-manager">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3><%= sails.__('Permission manager') %></h3>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-sm btn-outline-secondary" v-on:click="openEditPermissionDialog()">
+        <i class="fa fa-plus"></i>
+        <%= sails.__('Add permission') %>
+      </button>
+    </div>
+  </div>
+  <div class="margin-top-20 padding-right-20">
+    <table class="user-table table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th><%= sails.__('Permission name') %></th>
+        <th><%= sails.__('Permission code') %></th>
+        <th><%= sails.__('Options') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(permission, index) in permissionList">
+        <td>{{ index + 1 }}</td>
+        <td>{{ permission.name }}</td>
+        <td>{{ permission.id }}</td>
+        <td>
+          <button class="btn btn-sm btn-success" v-on:click="openEditPermissionDialog(permission)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" v-on:click="confirmDeletePermission(permission)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--modal-->
+  <div v-cloak>
+    <%- include('../dialogs/create-permission-dialog') %>
+    <%- include('../dialogs/delete-permission-dialog') %>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+

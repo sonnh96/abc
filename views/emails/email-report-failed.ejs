@@ -1,0 +1,30 @@
+<% /* Note: This is injected into `views/layouts/layout-email.ejs` */ %>
+<p style="margin-bottom: 25px;">Dear <%= fullName %>様</p>
+<p style="font-size: 1.5rem; color: #4d2645;">Your settlement is failed please try again</p>
+<% if (!newUser) { %>
+  <p style="margin-bottom: 25px;">If you want to register again:</p>
+  <div style="margin-bottom: 25px; text-align: center;">
+    <a
+      style="background-color: #00ACC4; display: inline-block; font-size: 1.1em; color: #fff; padding: 10px 35px 10px; font-weight: 500; text-decoration: none; border-radius: 7px;"
+      href="<%= url.resolve(sails.config.custom.baseUrl, '/register/new') + '?token=' + encodeURIComponent(token) %>">Register</a>
+  </div>
+  <p style="margin-bottom: 25px;">If you have any trouble, try pasting this link in your browser: <a
+      style="color: #00ACC4; word-wrap: break-word;"
+      href="<%= url.resolve(sails.config.custom.baseUrl, '/register/new') + '?token=' + encodeURIComponent(token) %>"><%= url.resolve(sails.config.custom.baseUrl, '/register/new') + '?token=' + encodeURIComponent(token) %></a>
+  </p>
+  <p style="margin-bottom: 5px;">Sincerely,</p>
+  <p style="margin-top: 0px;">AI プロジェクト AIFPチーム</p>
+<% } else { %>
+  <p style="margin-bottom: 25px;">If you want to register again:</p>
+  <div style="margin-bottom: 25px; text-align: center;">
+    <a
+      style="background-color: #00ACC4; display: inline-block; font-size: 1.1em; color: #fff; padding: 10px 35px 10px; font-weight: 500; text-decoration: none; border-radius: 7px;"
+      href="<%= url.resolve(sails.config.custom.baseUrl, '/register') %>">Register</a>
+  </div>
+  <p style="margin-bottom: 25px;">If you have any trouble, try pasting this link in your browser: <a
+      style="color: #00ACC4; word-wrap: break-word;"
+      href="<%= url.resolve(sails.config.custom.baseUrl, '/register') %>"><%= url.resolve(sails.config.custom.baseUrl, '/register') %></a>
+  </p>
+  <p style="margin-bottom: 5px;">Sincerely,</p>
+  <p style="margin-top: 0px;">AI プロジェクト AIFPチーム</p>
+<% } %>

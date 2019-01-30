@@ -1,0 +1,94 @@
+<div id="question-detail" vueapp="detail" vuelogic="static/js/vasystem/detail-page">
+  <div class="question-title">
+    <div class="content-box">
+      <h3 class="title-box input-document" style="text-align: center"><%= sails.__('Question') %></h3>
+      <div class="text-box">
+        <textarea id="doc" name="document" readonly>{{question}}</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="row quest-detail">
+    <div class="col-md-6 left-content">
+      <div class="title">
+        <%= sails.__('Comments') %>
+      </div>
+      <div class="content">
+        <div class="content-box">
+          <div class="text-box">
+            <textarea v-model="comm" id="doc" name="document"></textarea>
+          </div>
+          <button class="btn btn-sm btn-info" v-on:click="saveComment">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div v-if="comments" class="list-group">
+          <div v-for="(comment, index) in comments" class="item">
+            <div class="row">
+              <div class="col-md-5 user-name">
+                {{comment.username}}
+              </div>
+              <div class="col-md-6 timestamp">
+                {{prettyDate(comment.createdAt)}}
+              </div>
+            </div>
+            <div class="content-data">
+              {{comment.content}}
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-md-5 user-name">
+                直腸癌
+              </div>
+              <div class="col-md-6 timestamp">
+                2019直12腸24癌
+              </div>
+            </div>
+            <div class="content-data">
+              直腸癌リンパ節転移に対する術前画像診断の検討林裕樹:1、金城達也:1、西垣大志:1、伊禮靖苗:1、西巻正:11:琉球大学医学部消化器・腫瘍外科学(はじめに直腸癌リンパ節転移の治療前画像診断はい
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 right-content">
+      <div class="title">
+        <%= sails.__('Answers') %>
+      </div>
+      <div class="content">
+        <div class="content-box">
+          <div v-if="suggest" class="suggestion">
+            <div v-for="(sug, index) in suggest" class="item">
+              <div class="content-data">{{index + 1}}. {{sug.sen}}</div>
+              <div class="score"><%= sails.__('Score') %>: <span>{{sug.score}}</span></div>
+            </div>
+          </div>
+          <div class="text-box">
+            <textarea v-model="ans" id="doc" name="document"></textarea>
+          </div>
+          <button class="btn btn-sm btn-info" v-on:click="saveAnswer">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div v-if="answers" class="list-group">
+          <div v-for="(answer, index) in answers" class="item">
+            <div class="row">
+              <div class="col-md-5 user-name">
+                {{answer.username}}
+              </div>
+              <div class="col-md-6 timestamp">
+                {{prettyDate(answer.createdAt)}}
+              </div>
+            </div>
+            <div class="content-data">{{answer.content}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+

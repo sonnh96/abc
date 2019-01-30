@@ -1,0 +1,110 @@
+<modal v-if="updateDialog.shown" @close="cleanUpdateDialogForm" ref="updateTypeDialog">
+  <h5 slot="title">{{ updateDialog.creating ? 'Create user type' : 'Update user type'}}</h5>
+  <ajax-form :action="updateDialog.creating ? 'createUserType' : 'updateUserType'" :syncing.sync="updateDialog.syncing"
+             :cloud-error.sync="updateDialog.cloudError" :handle-parsing="handleParsingUpdateForm"
+             @submitted="userTypeUpdated">
+    <div class="modal-body">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-3">
+            <label><%= sails.__('Name') %>:</label>
+          </div>
+          <div class="col-9">
+            <input class="form-control form-control-sm" type="text" placeholder="Candidate user" name="name"
+                   :class="[updateDialog.formErrors.name ? 'is-invalid' : '']"
+                   v-model.trim="updateDialog.formData.name">
+            <div class="invalid-feedback" v-if="updateDialog.formErrors.name">
+              <%= sails.__('Please enter type name.') %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <label><%= sails.__('Price') %>:</label>
+          </div>
+          <div class="col-9">
+            <input class="form-control form-control-sm" type="number" placeholder="Plan price" name="price"
+                   :class="[updateDialog.formErrors.price ? 'is-invalid' : '']"
+                   v-model.trim="updateDialog.formData.price">
+            <div class="invalid-feedback" v-if="updateDialog.formErrors.price">
+              <%= sails.__('Please enter price.') %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <label><%= sails.__('Day Expire') %>:</label>
+          </div>
+          <div class="col-9">
+            <select class="form-control form-control-sm" name="dayExpire"
+                    :class="[updateDialog.formErrors.dayExpire ? 'is-invalid' : '']"
+                    v-model.trim="updateDialog.formData.dayExpire">
+              <option value="0">Please select expire day</option>
+              <option value="8">8 days</option>
+              <option value="30">1 month</option>
+              <option value="90">3 months</option>
+              <option value="180">6 months</option>
+              <option value="365">1 year</option>
+              <option value="-1">Infinitive</option>
+            </select>
+            <div class="invalid-feedback" v-if="updateDialog.formErrors.dayExpire">
+              <%= sails.__('Please enter type price.') %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <label><%= sails.__('For first time') %>:</label>
+          </div>
+          <div class="col-9">
+            <toggle-switch v-model="updateDialog.formData.forFirst"></toggle-switch>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <label><%= sails.__('Extra Day') %>:</label>
+          </div>
+          <div class="col-9">
+            <input type="number" class="form-control form-control-sm" name="extraDay"
+                   :class="[updateDialog.formErrors.extraDay ? 'is-invalid' : '']"
+                   v-model.trim="updateDialog.formData.extraDay">
+            <div class="invalid-feedback" v-if="updateDialog.formErrors.extraDay">
+              <%= sails.__('Please enter number.') %>
+            </div>
+          </div>
+        </div>
+        <p class="text-danger" v-if="updateDialog.cloudError">
+          <small><%= sails.__('general_error') %></small>
+        </p>
+        <div class="row margin-top-5">
+          <div class="col-3">
+            <label><%= sails.__('Permissions') %>:</label>
+          </div>
+          <div class="col-9">
+            <table class="table">
+              <thead>
+              <tr>
+                <td></td>
+                <td><%= sails.__('Status') %></td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="p in updateDialog.formData.permissions">
+                <td>{{p.name}}</td>
+                <td>
+                  <toggle-switch v-model="p.checked"></toggle-switch>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <ajax-button class="btn btn-secondary btn-sm" :sync="updateDialog.syncing">
+        {{ updateDialog.creating ? 'Create user type' : 'Update user type' }}
+      </ajax-button>
+    </div>
+  </ajax-form>
+</modal>

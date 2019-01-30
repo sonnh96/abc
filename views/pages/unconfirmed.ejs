@@ -1,0 +1,29 @@
+<div id="unconfirmed" class="container" v-cloak>
+  <ajax-form action="resendConfirmEmail" :syncing.sync="syncing" :form-data="formData"
+             @submitted="formSubmitted">
+    <div class="row margin-top-30">
+      <div class="col-sm-4 text-center">
+        <i class="fa fa-envelope-o fa-5x"></i>
+        &nbsp;
+      </div>
+      <div class="col-sm-8">
+        An email has been sent to
+        <strong><%= _.escape(me.emailChangeCandidate ? me.emailChangeCandidate : me.emailAddress) %></strong>
+        <br>
+        <sub>Confirmation email may be filtered by some spam filter. Please check your spam folder if email is not
+          seen in mailbox</sub>
+      </div>
+    </div>
+    <div class="row margin-top-20">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-8">
+        <ajax-button class="btn btn-default" :disabled="!canResend" :syncing="syncing">
+          Resend confirmation email
+          <i v-if="canResend" class="fa fa-paper-plane" aria-hidden="true"></i>
+          <span v-else>{{ timeLeft }}s</span>
+        </ajax-button>
+      </div>
+    </div>
+  </ajax-form>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

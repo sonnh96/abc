@@ -1,0 +1,32 @@
+<modal v-if="deleteDialog.shown" @close="cleanDeleteDialogForm" ref="deleteTypeDialog">
+  <h5 slot="title">Do you want to delete?</h5>
+  <ajax-form action="deleteUserType" :syncing.sync="deleteDialog.syncing"
+             :cloud-error.sync="deleteDialog.cloudError" :handle-parsing="handleParsingDeleteForm"
+             @submitted="userTypeDeleted">
+    <div class="modal-body">
+      <input type="hidden" :value="deleteDialog.formData.id" name="id">
+      <ul class="object-descriptions">
+        <li class="object--prop-item">
+          <p class="object--field"><%= sails.__('User type name') %>:</p>
+          <sub class="object--value" v-text="deleteDialog.formData.name"></sub>
+        </li>
+        <li class="object--prop-item">
+          <p class="object--field"><%= sails.__('With permissions') %>:</p>
+          <sub class="object--value" v-text="deleteDialog.formData.permission_arr"></sub>
+        </li>
+      </ul>
+      <p class="notice notice-sm" v-if="!deleteDialog.cloudError"><%- sails.__('delete_user_type_notice') %></p>
+      <p class="text-danger" v-if="deleteDialog.cloudError === 'in_use'">
+        <small><%= sails.__('Permission is in use, please remove permission from using roles first') %></small>
+      </p>
+      <p class="text-danger" v-else-if="deleteDialog.cloudError">
+        <small><%= sails.__('general_error') %></small>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <ajax-button class="btn btn-danger btn-sm" :sync="deleteDialog.syncing">
+        <%= sails.__('Delete') %>
+      </ajax-button>
+    </div>
+  </ajax-form>
+</modal>
