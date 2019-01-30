@@ -4,7 +4,6 @@ define(function (require) {
     mixins: [],
     data: {
       questionList: [],
-      userId: null,
       isAdmin: true,
       question: null,
     },
@@ -14,8 +13,6 @@ define(function (require) {
       console.log(SAILS_LOCALS);
       this.questionList = this.locals.questions;
       this.isAdmin = this.me.isAdmin;
-      this.userId = this.me.userId;
-      console.log(SAILS_LOCALS);
     },
     methods: {
       saveQuestion: function () {
@@ -34,6 +31,14 @@ define(function (require) {
       },
       updateQues: function(payload) {
         this.questionList.push(payload);
+      },
+      userCreate: function(id) {
+        console.log(id);
+        if (this.me.id == id) {
+          return true;
+        } else {
+          return false;
+        }
       },
       quesDetail: function (ques) {
         console.log(ques.id);

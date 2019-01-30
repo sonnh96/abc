@@ -29,44 +29,10 @@
         <td style="text-align: center">{{showStatus(ques)}}</td>
         <td style="text-align: center">{{ques.comment}}</td>
         <td style="text-align: center">
-          <button v-if="ques.userId == userId" class="btn btn-sm btn-success">
+          <button v-if="userCreate(ques.userId)" class="btn btn-sm btn-success">
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </button>
           <button class="btn btn-sm btn-info" v-on:click="quesDetail(ques)">
-            <i class="fa fa-share" aria-hidden="true"></i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td style="text-align: center">1</td>
-        <td class="content">
-          直腸癌リンパ節転移に対する術前画像診断の検討林裕樹:1、金城達也:1、西垣大志:1、伊禮靖苗:1、西巻正:11:琉球大学医学部消化器・腫瘍外科学(はじめに直腸癌リンパ節転移の治療前画像診断はいまだ困難な状況であるが,側方郭清や前治療の必要性について検討する際に重要である.
-        </td>
-        <td style="text-align: center">直腸癌</td>
-        <td style="text-align: center">waiting</td>
-        <td style="text-align: center">10</td>
-        <td style="text-align: center">
-          <button class="btn btn-sm btn-success">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </button>
-          <button class="btn btn-sm btn-info">
-            <i class="fa fa-share" aria-hidden="true"></i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td style="text-align: center">2</td>
-        <td class="content">
-          直腸癌リンパ節転移に対する術前画像診断の検討林裕樹:1、金城達也:1、西垣大志:1、伊禮靖苗:1、西巻正:11:琉球大学医学部消化器・腫瘍外科学(はじめに直腸癌リンパ節転移の治療前画像診断はいまだ困難な状況であるが,側方郭清や前治療の必要性について検討する際に重要である.
-        </td>
-        <td style="text-align: center">直腸癌</td>
-        <td style="text-align: center">answered</td>
-        <td style="text-align: center">88</td>
-        <td style="text-align: center">
-          <button class="btn btn-sm btn-success">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </button>
-          <button class="btn btn-sm btn-info">
             <i class="fa fa-share" aria-hidden="true"></i>
           </button>
         </td>
