@@ -37,7 +37,7 @@ module.exports = {
       let user = await User.findOne(question.answers[index].userId);
       question.answers[index].username = user.fullName;
     }
-    let url = baseUrl + 'suggest?ques=' + inputs.content;
+    let url =encodeURI( baseUrl + 'suggest?ques=' + inputs.content);
     const response = await axios.get(url).then(res => res.data);
     question.suggest = response;
 

@@ -158,5 +158,9 @@
 	"ID": "ID",
 	"Content": "Content",
 	"Comment": "Comment",
-	"Create by": "Create by"
+	"Create by": "Create by",
+	"Question": "Question",
+	"Comments": "Comments",
+	"Answers": "Answers",
+	"Score": "Score"
 }

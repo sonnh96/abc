@@ -29,7 +29,7 @@ module.exports = {
       content: inputs.content,
       userId: this.req.me.id
     };
-    let url = baseUrl + 'classify?sen=' + inputs.content;
+    let url = encodeURI(baseUrl + 'classify?sen=' + inputs.content);
     const response = await axios.get(url).then(res => res.data);
     for (let i in response.department_ids) {
       response.department_ids[i] = response.department_ids[i].toString();
